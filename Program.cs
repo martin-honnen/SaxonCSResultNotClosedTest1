@@ -19,7 +19,7 @@ transformer.BaseOutputUri = xsl1Uri;
 
 transformer.ResultDocumentHandler = (href, baseUri) => { 
     var serializer = processor.NewSerializer();
-    var fs = File.OpenWrite(new Uri(baseUri, href).LocalPath);
+    var fs = File.Open(new Uri(baseUri, href).LocalPath, FileMode.Create, FileAccess.Write);
     serializer.OutputStream = fs;
     serializer.OnClose(() => { fs.Close(); });
     return serializer;

@@ -17,6 +17,14 @@ transformer.SetParameter(new QName("OS"), new XdmAtomicValue(Environment.OSVersi
 transformer.InitialTemplate = new QName("http://www.w3.org/1999/XSL/Transform", "initial-template");
 transformer.BaseOutputUri = xsl1Uri;
 
+transformer.ResultDocumentHandler = (href, baseUri) => { 
+    var serializer = processor.NewSerializer();
+    var fs = File.OpenWrite(new Uri(baseUri, href).LocalPath);
+    serializer.OutputStream = fs;
+    serializer.OnClose(() => { fs.Close(); });
+    return serializer;
+};
+
 // perform transformation
 XdmDestination result = new(); // effectively unused
 transformer.Run(result);

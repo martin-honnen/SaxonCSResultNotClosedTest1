@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "SaxonCSResultNotClosedTest1": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": 
+        { "SAXON_LICENSE_DIR" : "/home/mh" }
+      ,
+      "distributionName": "Ubuntu-20.04"
+    }
+  }
+}
